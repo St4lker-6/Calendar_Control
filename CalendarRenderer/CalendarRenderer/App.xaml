@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:CalendarRenderer.Views"
+             x:Class="CalendarRenderer.App">
+	<Application.Resources>
+
+        <!-- Application resource dictionary -->
+        <ResourceDictionary x:Key="AppResourceDictionary">
+            <!--**** Grid month button template ****-->
+            <Style x:Key="gridButtonStyle" TargetType="Button">
+                <!--Use to delete space between cell grid and button inside-->
+                <Setter Property="Margin" Value="-4,-6,-4,-6" />
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <!--******************************-->
+
+            <!--**** Grid label ****-->
+            <Style x:Key="gridLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <!--******************************-->
+
+            <!--**** Grid month template ****--> 
+            <DataTemplate x:Key="DataTemplateGridMonth">
+                <ViewCell >
+                    <Grid RowSpacing="1" ColumnSpacing="1"> <!--Space between date cell button-->
+                        <Grid.RowDefinitions>
+                            <!--TODO: Voir comment gérer la taille de la ligne automatiquement-->
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <views:CalendarMonthCellView Grid.Column="0"
+                                              BindingContext="{Binding Days[0]}"/>
+
+                        <views:CalendarMonthCellView Grid.Column="1"
+                                              BindingContext="{Binding Days[1]}"/>
+
+                        <views:CalendarMonthCellView Grid.Column="2"
+                                              BindingContext="{Binding Days[2]}"/>
+
+                        <views:CalendarMonthCellView Grid.Column="3"
+                                              BindingContext="{Binding Days[3]}"/>
+
+                        <views:CalendarMonthCellView Grid.Column="4"
+                                              BindingContext="{Binding Days[4]}"/>
+
+                        <views:CalendarMonthCellView Grid.Column="5"
+                                              BindingContext="{Binding Days[5]}"/>
+
+                        <views:CalendarMonthCellView Grid.Column="6"
+                                              BindingContext="{Binding Days[6]}"/>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <!--******************************-->
+            
+            <!--**** Grid year template ****-->
+            <DataTemplate x:Key="DataTemplateGridYear">
+                <ViewCell>
+                    <Grid RowSpacing="1" ColumnSpacing="1">  <!--Space between date cell button-->
+                        <Grid.RowDefinitions>
+                            <!--TODO: Voir comment gérer la taille de la ligne automatiquement-->
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+
+                        <views:CalendarYearCellView Grid.Row="0" Grid.Column="0"
+                                                    BindingContext="{Binding Months[0]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="0" Grid.Column="1"
+                                                    BindingContext="{Binding Months[1]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="0" Grid.Column="2"
+                                                    BindingContext="{Binding Months[2]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="0" Grid.Column="3"
+                                                    BindingContext="{Binding Months[3]}"/>
+
+                        <views:CalendarYearCellView BackgroundColor="Black" Grid.Row="1" Grid.Column="0"
+                                                    BindingContext="{Binding Months[4]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="1" Grid.Column="1"
+                                                    BindingContext="{Binding Months[5]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="1" Grid.Column="2"
+                                                    BindingContext="{Binding Months[6]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="1" Grid.Column="3"
+                                                    BindingContext="{Binding Months[7]}"/>
+                        
+                        <views:CalendarYearCellView Grid.Row="2" Grid.Column="0"
+                                                    BindingContext="{Binding Months[8]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="2" Grid.Column="1"
+                                                    BindingContext="{Binding Months[9]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="2" Grid.Column="2"
+                                                    BindingContext="{Binding Months[10]}"/>
+
+                        <views:CalendarYearCellView Grid.Row="2" Grid.Column="3"
+                                                    BindingContext="{Binding Months[11]}"/>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <!--******************************-->
+        </ResourceDictionary>
+
+
+    </Application.Resources>
+</Application>

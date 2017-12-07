@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:CalendarRenderer.Views"
+             xmlns:app="clr-namespace:CalendarRenderer"
+             x:Class="CalendarRenderer.Views.CalendarGridView">
+
+    <ContentView.Content>
+        <Grid>
+            <ListView HasUnevenRows="true"
+                      ItemTemplate="{StaticResource Key=DataTemplateGridYear}" 
+                      ItemsSource="{Binding Years}" IsVisible="False"
+                      ItemSelected="ListViewItemSelected" >
+
+                <!--Show the list view in function of the current grid mode*-->
+                <ListView.Triggers>
+                    <DataTrigger TargetType="ListView" Binding="{Binding DisplayMode}" Value="1">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </ListView.Triggers>
+            </ListView >
+            
+            <ListView HasUnevenRows="true" 
+                      ItemTemplate="{StaticResource Key=DataTemplateGridMonth}" 
+                      ItemsSource="{Binding CurrentMonth.Weeks}" IsVisible="False"
+                      ItemSelected="ListViewItemSelected">
+
+                <!--Show the list view in function of the current grid mode*-->
+                <ListView.Triggers>
+                    <DataTrigger TargetType="ListView" Binding="{Binding DisplayMode}" Value="0">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </ListView.Triggers>
+
+            </ListView>
+
+            
+            <!--*I tryed to do it with data template but there were some problems with the displayed grid when I passed to a datatemplate to another -->
+            <!--*So I use now two listview and manage the visibility with the data trigger on my enum-->
+
+        </Grid>
+
+    </ContentView.Content>
+</ContentView>

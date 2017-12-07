@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalendarRenderer.Views.CalendarYearCellView">
+  <ContentView.Content>
+
+        <Grid BackgroundColor="Blue">
+            <Button Style="{StaticResource gridButtonStyle}" 
+                    Command="{Binding MonthClickCommand}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsCurrentMonth}" Value="True">
+                        <Setter Property="Margin" Value="0"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <!--Month name-->
+            <Label Style="{StaticResource gridLabelStyle}"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Text="{Binding NameMonth}"/>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

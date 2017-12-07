@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ctrl="clr-namespace:CalendarRenderer.Controls;assembly=CalendarRenderer"
+             x:Class="CalendarRenderer.Views.CalendarMonthCellView">
+
+    <!--Hide the control on the cell when the day is not valid-->
+    <ContentView.Style>
+        <Style TargetType="ContentView">
+            <Setter Property="IsVisible" Value="True"/>
+            <Style.Triggers>
+                <DataTrigger TargetType="ContentView"  Binding="{Binding Valid}" Value="False">
+                    <Setter Property="IsVisible" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </ContentView.Style>
+    
+    <ContentView.Content>
+        <Grid BackgroundColor="Blue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/> 
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Grid.RowSpan="2" 
+                    Style="{StaticResource gridButtonStyle}"
+                    Command="{Binding DayClickCommand}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsCurrentDay}" Value="True">
+                        <Setter Property="Margin" Value="0"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <!--1, 2, 3, 4-->
+            <Label Grid.Row="0" 
+                   Style="{StaticResource gridLabelStyle}"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Start" 
+                   Text="{Binding NumberDay}"/>
+
+
+            <!--Monday, tuesday, wednesday ...-->
+            <!--<Label Grid.Row="0" 
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Start" 
+                   Text="{Binding NameDay}"/>-->
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>
