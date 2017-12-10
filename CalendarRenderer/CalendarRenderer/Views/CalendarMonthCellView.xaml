@@ -2,7 +2,16 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ctrl="clr-namespace:CalendarRenderer.Controls;assembly=CalendarRenderer"
+             xmlns:theme="clr-namespace:CalendarRenderer.ResourceDictionary"
              x:Class="CalendarRenderer.Views.CalendarMonthCellView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <theme:GlobalResourceDictionary/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
 
     <!--Hide the control on the cell when the day is not valid-->
     <ContentView.Style>
@@ -15,12 +24,12 @@
             </Style.Triggers>
         </Style>
     </ContentView.Style>
-    
+
     <ContentView.Content>
         <Grid BackgroundColor="Blue">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/> 
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Button Grid.Row="0" Grid.RowSpan="2" 

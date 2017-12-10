@@ -1,8 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:theme="clr-namespace:CalendarRenderer.ResourceDictionary"
              x:Class="CalendarRenderer.Views.CalendarYearCellView">
-  <ContentView.Content>
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <theme:GlobalResourceDictionary/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
 
         <Grid BackgroundColor="Blue">
             <Button Style="{StaticResource gridButtonStyle}" 

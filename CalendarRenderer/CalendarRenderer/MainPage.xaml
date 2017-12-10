@@ -3,7 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CalendarRenderer"
              xmlns:views="clr-namespace:CalendarRenderer.Views"
+             xmlns:theme="clr-namespace:CalendarRenderer.ResourceDictionary"
              x:Class="CalendarRenderer.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <theme:GlobalResourceDictionary/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid ColumnSpacing="0" RowSpacing="1"> <!--Space between previous/next button and grid-->
         <Grid.ColumnDefinitions>

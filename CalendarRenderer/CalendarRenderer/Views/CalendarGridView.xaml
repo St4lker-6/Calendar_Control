@@ -3,7 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:CalendarRenderer.Views"
              xmlns:app="clr-namespace:CalendarRenderer"
+             xmlns:theme="clr-namespace:CalendarRenderer.ResourceDictionary"
              x:Class="CalendarRenderer.Views.CalendarGridView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <theme:GlobalResourceDictionary/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
 
     <ContentView.Content>
         <Grid>
@@ -19,7 +28,7 @@
                     </DataTrigger>
                 </ListView.Triggers>
             </ListView >
-            
+
             <ListView HasUnevenRows="true" 
                       ItemTemplate="{StaticResource Key=DataTemplateGridMonth}" 
                       ItemsSource="{Binding CurrentMonth.Weeks}" IsVisible="False"
@@ -34,7 +43,7 @@
 
             </ListView>
 
-            
+
             <!--*I tryed to do it with data template but there were some problems with the displayed grid when I passed to a datatemplate to another -->
             <!--*So I use now two listview and manage the visibility with the data trigger on my enum-->
 

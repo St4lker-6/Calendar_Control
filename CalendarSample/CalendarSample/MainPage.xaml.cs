@@ -12,6 +12,7 @@ namespace CalendarSample
         public MainPage()
         {
             InitializeComponent();
+            
         }
     }
 }

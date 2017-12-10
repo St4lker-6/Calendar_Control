@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CalendarSample"
+             xmlns:Ctrl="clr-namespace:CalendarRenderer;assembly=CalendarRenderer"
              x:Class="CalendarSample.MainPage">
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <StackLayout>
+        <Ctrl:View1/>
+    </StackLayout>
 
 </ContentPage>
