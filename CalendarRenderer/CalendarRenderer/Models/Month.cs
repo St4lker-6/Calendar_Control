@@ -25,11 +25,23 @@ namespace CalendarRenderer.Models
         public int Year { get; private set; }
         public bool IsCurrentMonth { get; private set; }
         public ICommand MonthClickCommand{ get; private set; }
+
+        private Color CurrentMonthColor { get; set; }
+        private Color TextColor { get; set; }
+        private Color CellColor { get; set; }
         #endregion
 
-        public Month(IEventAggregator eventAggregator, int numberMonth, string nameMonth, int year, bool isCurrentMonth = false)
+        public Month(IEventAggregator eventAggregator, DependencyProperties dependencyProperties, int numberMonth, string nameMonth, int year, bool isCurrentMonth = false)
         {
             _eventAggregator = eventAggregator;
+
+            if (dependencyProperties != null)
+            {
+                this.CurrentMonthColor = dependencyProperties.CurrentMonthColor;
+                this.TextColor = dependencyProperties.TextColor;
+                this.CellColor = dependencyProperties.CellColor;
+            }
+
             this.NameMonth = nameMonth;
             this.NumberMonth = numberMonth;
             this.IsCurrentMonth = isCurrentMonth;

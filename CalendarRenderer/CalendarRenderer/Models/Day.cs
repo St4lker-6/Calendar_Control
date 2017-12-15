@@ -27,11 +27,14 @@ namespace CalendarRenderer.Models
         /// Invalid if the day is a day of an another month
         /// </summary>
         public bool Valid { get; private set; }
+        public Color CurrentDayColor { get; private set; }
+        public Color TextColor { get; private set; }
+        public Color CellColor { get; private set; }
 
         public ICommand DayClickCommand { get; private set; }
 
 
-        public Day(IEventAggregator eventAggregator, int numberDay, string nameDay, int numberMonth, int year, bool valid, bool isCurrentDay = false)
+        public Day(IEventAggregator eventAggregator, DependencyProperties dependencyProperties, int numberDay, string nameDay, int numberMonth, int year, bool valid, bool isCurrentDay = false)
         {
             _eventAggregator = eventAggregator;
             this.NumberDay = numberDay;
@@ -40,6 +43,13 @@ namespace CalendarRenderer.Models
             this.Year = year;
             this.Valid = valid;
             this.IsCurrentDay = isCurrentDay;
+
+            if (dependencyProperties != null)
+            {
+                this.CurrentDayColor = dependencyProperties.CurrentDayColor;
+                this.TextColor = dependencyProperties.TextColor;
+                this.CellColor = dependencyProperties.CellColor;
+            }
 
             DayClickCommand = new Command(DayClicked);
         }

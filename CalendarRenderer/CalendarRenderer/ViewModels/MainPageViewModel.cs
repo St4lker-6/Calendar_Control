@@ -5,6 +5,7 @@ using CalendarRenderer.Models.Helpers;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace CalendarRenderer.ViewModels
     /// <summary>
     /// View model of the main page
     /// </summary>
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : ContentPage, INotifyPropertyChanged
     {
         #region Fields
         private readonly IEventAggregator _eventAggregator;
@@ -44,7 +45,7 @@ namespace CalendarRenderer.ViewModels
             set
             {
                 _calendarDateTime = value;
-                this.NotifyPropertyChanged(nameof(CalendarDateTime));
+                this.OnPropertyChanged(nameof(CalendarDateTime));
             }
         }
 
@@ -59,7 +60,7 @@ namespace CalendarRenderer.ViewModels
             set
             {
                 _calendarGridViewContextModel = value;
-                this.NotifyPropertyChanged(nameof(CalendarGridViewModel));
+                this.OnPropertyChanged(nameof(CalendarGridViewModel));
             }
         }
 
@@ -70,6 +71,7 @@ namespace CalendarRenderer.ViewModels
         #endregion
 
         #endregion
+        
 
         public MainPageViewModel(IEventAggregator eventAggregator)
         {
@@ -95,7 +97,7 @@ namespace CalendarRenderer.ViewModels
         /// </summary>
         private void ActualizeDisplayedDate()
         {
-            this.NotifyPropertyChanged(nameof(this.DateLabel));
+            this.OnPropertyChanged(nameof(this.DateLabel));
         }
 
         /// <summary>

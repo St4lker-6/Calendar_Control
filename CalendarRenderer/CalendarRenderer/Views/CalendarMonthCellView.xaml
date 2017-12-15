@@ -26,7 +26,7 @@
     </ContentView.Style>
 
     <ContentView.Content>
-        <Grid BackgroundColor="Blue">
+        <Grid BackgroundColor="{Binding CurrentDayColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -34,7 +34,8 @@
 
             <Button Grid.Row="0" Grid.RowSpan="2" 
                     Style="{StaticResource gridButtonStyle}"
-                    Command="{Binding DayClickCommand}">
+                    Command="{Binding DayClickCommand}"
+                    BackgroundColor="{Binding CellColor}">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button" Binding="{Binding IsCurrentDay}" Value="True">
                         <Setter Property="Margin" Value="0"/>
@@ -47,7 +48,9 @@
                    Style="{StaticResource gridLabelStyle}"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Start" 
-                   Text="{Binding NumberDay}"/>
+                   Text="{Binding NumberDay}"
+                   BackgroundColor="Transparent"
+                   TextColor="{Binding TextColor}"/>
 
 
             <!--Monday, tuesday, wednesday ...-->

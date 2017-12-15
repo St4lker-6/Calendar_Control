@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace CalendarRenderer.ViewModels
 {
@@ -79,6 +80,22 @@ namespace CalendarRenderer.ViewModels
             }
         }
 
+        private Color _currentDayColor;
+        private DependencyProperties _dependecyProperties;
+
+        public Color CurrentDayColor
+        {
+
+            get
+            {
+                return _currentDayColor;
+            }
+            set
+            {
+                _currentDayColor = value;
+                this.NotifyPropertyChanged(nameof(CurrentDayColor));
+            }
+        }
         #endregion
 
 
@@ -88,6 +105,8 @@ namespace CalendarRenderer.ViewModels
             this.DisplayMode = DisplayMode.YearMode;
             
             _eventAggregator = eventAggregator;
+
+            _eventAggregator.GetEvent<DependecyPropertyChangedEvent>().Subscribe(DependecyPropertyChanged);
         }
 
         #region Methods
@@ -98,7 +117,7 @@ namespace CalendarRenderer.ViewModels
         /// <param name="newDate"></param>
         public void LoadGridModeMonth(DateTime newDate)
         {
-            this.CurrentMonth = DateTimeHelper.GetDateInformationsMonthMode(newDate);
+            this.CurrentMonth = DateTimeHelper.GetDateInformationsMonthMode(newDate, _dependecyProperties);
         }
 
         /// <summary>
@@ -107,7 +126,12 @@ namespace CalendarRenderer.ViewModels
         /// <param name="newDate"></param>
         public void LoadGridModeYear(DateTime newDate)
         {
-            this.Years = DateTimeHelper.GetDateInformationsYearMode(newDate);
+            this.Years = DateTimeHelper.GetDateInformationsYearMode(newDate, _dependecyProperties);
+        }
+
+        private void DependecyPropertyChanged(DependecyPropertyChangedEventArgs obj)
+        {
+            _dependecyProperties = obj.DependecyProps;
         }
 
         #endregion
