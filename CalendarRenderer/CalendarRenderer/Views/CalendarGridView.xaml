@@ -16,10 +16,16 @@
 
     <ContentView.Content>
         <Grid>
-            <ListView HasUnevenRows="true"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <ListView Grid.Row="0"
+                      HasUnevenRows="true"
                       ItemTemplate="{StaticResource Key=DataTemplateGridYear}" 
                       ItemsSource="{Binding Years}" IsVisible="False"
-                      ItemSelected="ListViewItemSelected" >
+                      ItemSelected="ListViewItemSelected"
+                      BackgroundColor="{Binding CellBackgroundColor}">
 
                 <!--Show the list view in function of the current grid mode*-->
                 <ListView.Triggers>
@@ -29,10 +35,12 @@
                 </ListView.Triggers>
             </ListView >
 
-            <ListView HasUnevenRows="true" 
+            <ListView Grid.Row="0"
+                      HasUnevenRows="true" 
                       ItemTemplate="{StaticResource Key=DataTemplateGridMonth}" 
                       ItemsSource="{Binding CurrentMonth.Weeks}" IsVisible="False"
-                      ItemSelected="ListViewItemSelected">
+                      ItemSelected="ListViewItemSelected"
+                      BackgroundColor="{Binding CellBackgroundColor}">
 
                 <!--Show the list view in function of the current grid mode*-->
                 <ListView.Triggers>

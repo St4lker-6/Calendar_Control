@@ -24,7 +24,6 @@ namespace CalendarRenderer.ViewModels
         #endregion
 
         #region Properties
-
         public string DateLabel
         {
 
@@ -71,7 +70,11 @@ namespace CalendarRenderer.ViewModels
         #endregion
 
         #endregion
-        
+
+        public MainPageViewModel()
+        {
+
+        }
 
         public MainPageViewModel(IEventAggregator eventAggregator)
         {

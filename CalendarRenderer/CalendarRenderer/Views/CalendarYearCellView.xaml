@@ -14,7 +14,18 @@
 
     <ContentView.Content>
 
-        <Grid BackgroundColor="{Binding CurrentMonthColor}">
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                    <Style.Triggers>
+                        <DataTrigger TargetType="Grid"  Binding="{Binding IsCurrentMonth}" Value="True">
+                            <Setter Property="BackgroundColor" Value="{Binding CurrentMonthColor}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
             <Button Style="{StaticResource gridButtonStyle}" 
                     Command="{Binding MonthClickCommand}"
                     BackgroundColor="{Binding CellColor}">
@@ -24,6 +35,8 @@
                     </DataTrigger>
                 </Button.Triggers>
             </Button>
+
+
 
             <!--Month name-->
             <Label Style="{StaticResource gridLabelStyle}"

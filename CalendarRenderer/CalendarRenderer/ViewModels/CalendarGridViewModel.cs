@@ -20,6 +20,7 @@ namespace CalendarRenderer.ViewModels
     {
         #region Fields
         private IEventAggregator _eventAggregator;
+        private DateTime _currentBrowsedDate;
         #endregion
 
         #region Properties
@@ -80,24 +81,28 @@ namespace CalendarRenderer.ViewModels
             }
         }
 
-        private Color _currentDayColor;
-        private DependencyProperties _dependecyProperties;
-
-        public Color CurrentDayColor
+        private Color _cellBackgroundColor;
+        public Color CellBackgroundColor
         {
 
             get
             {
-                return _currentDayColor;
+                return _cellBackgroundColor;
             }
             set
             {
-                _currentDayColor = value;
-                this.NotifyPropertyChanged(nameof(CurrentDayColor));
+                _cellBackgroundColor = value;
+                this.NotifyPropertyChanged(nameof(CellBackgroundColor));
             }
         }
+        private DependencyProperties _dependecyProperties;
+
         #endregion
 
+        public CalendarGridViewModel()
+        {
+
+        }
 
         public CalendarGridViewModel(IEventAggregator eventAggregator)
         {
@@ -107,6 +112,8 @@ namespace CalendarRenderer.ViewModels
             _eventAggregator = eventAggregator;
 
             _eventAggregator.GetEvent<DependecyPropertyChangedEvent>().Subscribe(DependecyPropertyChanged);
+
+            this.Years = new ObservableCollection<Year>();
         }
 
         #region Methods
@@ -117,6 +124,7 @@ namespace CalendarRenderer.ViewModels
         /// <param name="newDate"></param>
         public void LoadGridModeMonth(DateTime newDate)
         {
+            _currentBrowsedDate = newDate;
             this.CurrentMonth = DateTimeHelper.GetDateInformationsMonthMode(newDate, _dependecyProperties);
         }
 
@@ -126,12 +134,29 @@ namespace CalendarRenderer.ViewModels
         /// <param name="newDate"></param>
         public void LoadGridModeYear(DateTime newDate)
         {
+            _currentBrowsedDate = newDate;
             this.Years = DateTimeHelper.GetDateInformationsYearMode(newDate, _dependecyProperties);
         }
 
         private void DependecyPropertyChanged(DependecyPropertyChangedEventArgs obj)
         {
             _dependecyProperties = obj.DependecyProps;
+
+            this.CellBackgroundColor = _dependecyProperties.CellBackgroundColor;
+
+            switch (this.DisplayMode)
+            {
+                case DisplayMode.MonthMode:
+                    this.LoadGridModeMonth(_currentBrowsedDate);
+                    break;
+
+                case DisplayMode.YearMode:
+                    this.LoadGridModeYear(_currentBrowsedDate);
+                    break;
+
+                default:
+                    throw new InvalidOperationException();
+            }
         }
 
         #endregion

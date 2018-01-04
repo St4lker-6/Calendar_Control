@@ -12,6 +12,11 @@ namespace CalendarRenderer.ViewModels
     /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
+        public ViewModelBase()
+        {
+
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void NotifyPropertyChanged(string propertyName)

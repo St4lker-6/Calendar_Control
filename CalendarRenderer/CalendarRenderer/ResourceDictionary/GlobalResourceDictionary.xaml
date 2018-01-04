@@ -64,7 +64,6 @@
             </Grid>
         </ViewCell>
     </DataTemplate>
-    <!--******************************-->
 
     <!--**** Grid year template ****-->
     <DataTemplate x:Key="DataTemplateGridYear">

@@ -8,7 +8,9 @@ namespace CalendarRenderer.Models.Helpers
     public static class DateTimeHelper
     {
         public const string monthFormat = "MMMM";
+        public const string monthFormatShort = "MMM";
         public const string yearFormat = "yyyy";
+        public const string dayFormat = "ddd";
 
         /// <summary>
         /// Load the information of the month for the date passed in argument
@@ -41,10 +43,10 @@ namespace CalendarRenderer.Models.Helpers
 
             var browsingDate = firstOfMonth.AddDays(dayBeforeFirstOfWeek);
 
-            var Month = new Month(ApplicationService.Instance.EventAggregator, dependencyProperties, currentMonth, calendarDateTime.ToString("MMM"), calendarDateTime.Year);
+            var Month = new Month(ApplicationService.Instance.EventAggregator, dependencyProperties, currentMonth, calendarDateTime.ToString(monthFormatShort), calendarDateTime.Year);
 
             /// Browse weeks
-            for (int indexDay = 0; indexDay < weekInMonth; indexDay++)
+            for (int indexWeek = 0; indexWeek < weekInMonth; indexWeek++)
             {
                 var week = new Week();
 
@@ -55,12 +57,12 @@ namespace CalendarRenderer.Models.Helpers
                     {
                         /// Comapre Date without hour 
                         bool isCurrentDay = browsingDate.Date == DateTime.Now.Date;
-                        week.Days.Add(new Day(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate.Day, browsingDate.ToString("ddd"), browsingDate.Month, browsingDate.Year, valid: true, isCurrentDay: isCurrentDay));
+                        week.Days.Add(new Day(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate.Day, browsingDate.ToString(dayFormat), browsingDate.Month, browsingDate.Year, valid: true, isCurrentDay: isCurrentDay));
                         browsingDate = browsingDate.AddDays(1);
                     }
                     else
                     {
-                        week.Days.Add(new Day(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate.Day, browsingDate.ToString("ddd"), browsingDate.Month, browsingDate.Year, valid: false));
+                        week.Days.Add(new Day(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate.Day, browsingDate.ToString(dayFormat), browsingDate.Month, browsingDate.Year, valid: false));
                         browsingDate = browsingDate.AddDays(1);
                     }
                 }
@@ -120,7 +122,7 @@ namespace CalendarRenderer.Models.Helpers
                 for (int indexColumnMoth = 0; indexColumnMoth < 4; indexColumnMoth++)
                 {
                     var isCurrentMonth = (browsingDate.Year == DateTime.Now.Year) && (browsingDate.Month == DateTime.Now.Month);
-                    
+
                     var month = new Month(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate.Month, browsingDate.ToString(monthFormat), browsingDate.Year, isCurrentMonth);
                     year.Months.Add(month);
 

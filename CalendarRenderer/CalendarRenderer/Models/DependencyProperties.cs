@@ -12,7 +12,12 @@ namespace CalendarRenderer.Models
         public Color CurrentDayColor { get; set; }
         public Color CurrentMonthColor { get; set; }
         public Color CellColor { get; set; }
-        public Color BackgroundColor { get; set; }
+        public Color CellBackgroundColor { get; set; }
         public Color TextColor { get; set; }
+
+        public DependencyProperties()
+        {
+
+        }
     }
 }

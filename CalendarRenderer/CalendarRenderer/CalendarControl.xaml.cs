@@ -79,19 +79,19 @@ namespace CalendarRenderer
             }
         }
 
-        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create("BackgroundColor",
+        public static readonly BindableProperty CellBackgroundColorProperty = BindableProperty.Create("CellBackgroundColor",
                                                                                            typeof(Color),
                                                                                            typeof(CalendarControl),
                                                                                            defaultValue: Color.White,
                                                                                            defaultBindingMode: BindingMode.TwoWay,
                                                                                            propertyChanged: OnDependecyPropertyChanged);
 
-        public Color BackgroundColor
+        public Color CellBackgroundColor
         {
-            get { return (Color)GetValue(BackgroundColorProperty); }
+            get { return (Color)GetValue(CellBackgroundColorProperty); }
             set
             {
-                SetValue(BackgroundColorProperty, value);
+                SetValue(CellBackgroundColorProperty, value);
             }
         }
 
@@ -122,7 +122,7 @@ namespace CalendarRenderer
             self.DependecyProp.CurrentDayColor = self.CurrentDayColor;
             self.DependecyProp.CurrentMonthColor = self.CurrentMonthColor;
             self.DependecyProp.CellColor = self.CellColor;
-            self.DependecyProp.BackgroundColor = self.BackgroundColor;
+            self.DependecyProp.CellBackgroundColor = self.CellBackgroundColor;
             self.DependecyProp.TextColor = self.TextColor;
             _eventAggregator.GetEvent<DependecyPropertyChangedEvent>().Publish(new DependecyPropertyChangedEventArgs(self.DependecyProp));
         }

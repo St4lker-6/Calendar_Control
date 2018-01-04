@@ -11,7 +11,7 @@ namespace CalendarRenderer
 {
     public partial class App : Application
     {
-        public App(IPlatformInitializer initializer = null)
+        public App()
         {
             InitializeComponent();
 

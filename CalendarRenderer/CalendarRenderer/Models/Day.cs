@@ -27,6 +27,8 @@ namespace CalendarRenderer.Models
         /// Invalid if the day is a day of an another month
         /// </summary>
         public bool Valid { get; private set; }
+
+        /// Need to be in public to be able to bind on
         public Color CurrentDayColor { get; private set; }
         public Color TextColor { get; private set; }
         public Color CellColor { get; private set; }

@@ -26,9 +26,10 @@ namespace CalendarRenderer.Models
         public bool IsCurrentMonth { get; private set; }
         public ICommand MonthClickCommand{ get; private set; }
 
-        private Color CurrentMonthColor { get; set; }
-        private Color TextColor { get; set; }
-        private Color CellColor { get; set; }
+        /// Need to be in public to be able to bind on
+        public Color CurrentMonthColor { get; private set; }
+        public Color TextColor { get; private set; }
+        public Color CellColor { get; private set; }
         #endregion
 
         public Month(IEventAggregator eventAggregator, DependencyProperties dependencyProperties, int numberMonth, string nameMonth, int year, bool isCurrentMonth = false)
@@ -47,7 +48,7 @@ namespace CalendarRenderer.Models
             this.IsCurrentMonth = isCurrentMonth;
             this.Year = year;
 
-            Weeks = new ObservableCollection<Week>();
+            this.Weeks = new ObservableCollection<Week>();
             this.MonthClickCommand = new Command(this.MonthClicked);
         }
 

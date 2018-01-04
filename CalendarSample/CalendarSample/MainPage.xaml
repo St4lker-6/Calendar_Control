@@ -8,8 +8,8 @@
     <StackLayout>
         <Ctrl:CalendarControl CurrentDayColor="Yellow"
                               CurrentMonthColor = "Blue"
-                              CellColor="White"
-                              BackgroundColor="Black"
+                              CellColor="Black"
+                              CellBackgroundColor="Yellow"
                               TextColor="Pink"/>
     </StackLayout>
 
