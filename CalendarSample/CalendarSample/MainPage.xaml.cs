@@ -14,5 +14,16 @@ namespace CalendarSample
             InitializeComponent();
             
         }
+
+        /// <summary>
+        /// Method executed when user clicked on a specific day
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void DayClicked(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }

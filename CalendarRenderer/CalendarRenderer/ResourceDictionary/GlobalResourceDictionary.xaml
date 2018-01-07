@@ -7,10 +7,11 @@
     <!--**** Grid month button template ****-->
     <Style x:Key="gridButtonStyle" TargetType="Button">
         <!--Use to delete space between cell grid and button inside-->
-        <Setter Property="Margin" Value="-4,-6,-4,-6" />
+        <Setter Property="Margin" Value="-2,-2,0,0" />
         <Setter Property="BackgroundColor" Value="Black" />
         <Setter Property="TextColor" Value="White" />
     </Style>
+
     <!--******************************-->
 
     <!--**** Grid label ****-->
@@ -22,7 +23,7 @@
     <!--**** Grid month template ****-->
     <DataTemplate x:Key="DataTemplateGridMonth">
         <ViewCell >
-            <Grid RowSpacing="1" ColumnSpacing="1">
+            <Grid RowSpacing="-1" ColumnSpacing="-1">
                 
 
                 <Grid.RowDefinitions>
@@ -68,7 +69,7 @@
     <!--**** Grid year template ****-->
     <DataTemplate x:Key="DataTemplateGridYear">
         <ViewCell>
-            <Grid RowSpacing="1" ColumnSpacing="1">
+            <Grid RowSpacing="-1" ColumnSpacing="-1">
                 <!--Space between date cell button-->
                 <Grid.RowDefinitions>
                     <!--TODO: Voir comment gérer la taille de la ligne automatiquement-->
@@ -78,10 +79,10 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <views:CalendarYearCellView Grid.Row="0" Grid.Column="0"

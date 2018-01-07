@@ -138,6 +138,12 @@ namespace CalendarRenderer.ViewModels
             this.Years = DateTimeHelper.GetDateInformationsYearMode(newDate, _dependecyProperties);
         }
 
+        /// <summary>
+        /// Method executed when a dependency property changed
+        /// Use because the constructor of the main page is executed before the propety changed method of all dependency properties
+        /// Allows to reload the grid with the new value of the dependecy properties
+        /// </summary>
+        /// <param name="obj"></param>
         private void DependecyPropertyChanged(DependecyPropertyChangedEventArgs obj)
         {
             _dependecyProperties = obj.DependecyProps;

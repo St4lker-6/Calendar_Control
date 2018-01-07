@@ -7,6 +7,10 @@ using Xamarin.Forms;
 
 namespace CalendarRenderer.Models
 {
+    /// <summary>
+    /// Class regrouping all dependency properties of the calendar control
+    /// Use to pass properties between views
+    /// </summary>
     public class DependencyProperties
     {
         public Color CurrentDayColor { get; set; }
@@ -14,10 +18,5 @@ namespace CalendarRenderer.Models
         public Color CellColor { get; set; }
         public Color CellBackgroundColor { get; set; }
         public Color TextColor { get; set; }
-
-        public DependencyProperties()
-        {
-
-        }
     }
 }

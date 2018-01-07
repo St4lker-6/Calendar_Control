@@ -6,11 +6,14 @@
              x:Class="CalendarSample.MainPage">
 
     <StackLayout>
-        <Ctrl:CalendarControl CurrentDayColor="Yellow"
-                              CurrentMonthColor = "Blue"
+        
+        <!--Calendar custom control--> 
+        <Ctrl:CalendarControl CurrentDayColor="Red"
+                              CurrentMonthColor = "Red"
                               CellColor="Black"
                               CellBackgroundColor="Yellow"
-                              TextColor="Pink"/>
+                              TextColor="Yellow"
+                              DayClickedEvent="DayClicked"/>
     </StackLayout>
 
 </ContentPage>

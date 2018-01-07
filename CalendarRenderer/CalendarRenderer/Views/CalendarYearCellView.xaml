@@ -36,8 +36,6 @@
                 </Button.Triggers>
             </Button>
 
-
-
             <!--Month name-->
             <Label Style="{StaticResource gridLabelStyle}"
                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"

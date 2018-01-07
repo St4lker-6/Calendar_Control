@@ -63,6 +63,51 @@ namespace CalendarRenderer.ViewModels
             }
         }
 
+        private Color _cellBackgroundColor;
+        public Color CellBackgroundColor
+        {
+
+            get
+            {
+                return _cellBackgroundColor;
+            }
+            set
+            {
+                _cellBackgroundColor = value;
+                this.OnPropertyChanged(nameof(CellBackgroundColor));
+            }
+        }
+
+        private Color _textColor;
+        public Color TextColor
+        {
+
+            get
+            {
+                return _textColor;
+            }
+            set
+            {
+                _textColor = value;
+                this.OnPropertyChanged(nameof(TextColor));
+            }
+        }
+
+        private Color _cellColor;
+        public Color CellColor
+        {
+
+            get
+            {
+                return _cellColor;
+            }
+            set
+            {
+                _cellColor = value;
+                this.OnPropertyChanged(nameof(CellColor));
+            }
+        }
+
         #region Commands
         public ICommand PreviousButtonCommand { get; protected set; }
         public ICommand CurrentButtonCommand { get; protected set; }
@@ -90,7 +135,7 @@ namespace CalendarRenderer.ViewModels
             this.CalendarGridViewModel.LoadGridModeYear(this.CalendarDateTime);
 
             _eventAggregator.GetEvent<MonthClickedEvent>().Subscribe(MonthClicked);
-            _eventAggregator.GetEvent<DayClickedEvent>().Subscribe(DayClicked);
+            _eventAggregator.GetEvent<DependecyPropertyChangedEvent>().Subscribe(DependecyPropertyChanged);
         }
 
         #region Methods
@@ -237,12 +282,21 @@ namespace CalendarRenderer.ViewModels
         }
 
         /// <summary>
-        /// Method executed when a click on a day is realized
+        /// Method executed when a dependency property changed
+        /// Use because the constructor of the main page is executed before the propety changed method of all dependency properties
+        /// Allows to reload the grid with the new value of the dependecy properties
         /// </summary>
-        private void DayClicked(DayClickedEventArgs obj)
+        /// <param name="obj"></param>
+        private void DependecyPropertyChanged(DependecyPropertyChangedEventArgs obj)
         {
+            var dependecyProperties = obj.DependecyProps;
 
+            this.CellBackgroundColor = dependecyProperties.CellBackgroundColor;
+            this.TextColor = dependecyProperties.TextColor;
+            this.CellColor = dependecyProperties.CellColor;
+            
         }
+
         #endregion
     }
 }
