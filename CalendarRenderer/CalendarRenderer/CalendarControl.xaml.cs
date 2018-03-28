@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Events;
 using CalendarRenderer.Models.Events;
+using System.Collections.ObjectModel;
 
 namespace CalendarRenderer
 {
@@ -110,6 +111,7 @@ namespace CalendarRenderer
                                                                                            defaultValue: Color.White,
                                                                                            defaultBindingMode: BindingMode.TwoWay,
                                                                                            propertyChanged: OnDependecyPropertyChanged);
+
         /// <summary>
         /// Defines the 
         /// </summary>
@@ -121,6 +123,26 @@ namespace CalendarRenderer
                 SetValue(TextColorProperty, value);
             }
         }
+
+        public static readonly BindableProperty ActivitiesProperty = BindableProperty.Create("Activities",
+                                                                           typeof(ObservableCollection<DayActivity>),
+                                                                           typeof(CalendarControl),
+                                                                           defaultBindingMode: BindingMode.TwoWay,
+                                                                           propertyChanged: OnActivitiesChanged);
+        /// <summary>
+        /// Defines the 
+        /// </summary>
+        public ObservableCollection<DayActivity> Activities
+        {
+            get { return (ObservableCollection<DayActivity>)GetValue(ActivitiesProperty); }
+            set
+            {
+                SetValue(ActivitiesProperty, value);
+            }
+        }
+
+
+
 
         /// <summary>
         /// Event raised when the user clicked on a specific day
@@ -159,6 +181,19 @@ namespace CalendarRenderer
             self.DependecyProp.CellBackgroundColor = self.CellBackgroundColor;
             self.DependecyProp.TextColor = self.TextColor;
 
+            /// Raise event to notify other view that a dependecy property changed
+            _eventAggregator.GetEvent<DependecyPropertyChangedEvent>().Publish(new DependecyPropertyChangedEventArgs(self.DependecyProp));
+        }
+
+        private static void OnActivitiesChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var self = (CalendarControl)bindable;
+
+            /// Instanciate the object one time to not lose previous data
+            if (self.DependecyProp == null)
+                self.DependecyProp = new DependencyProperties();
+
+            self.DependecyProp.Activities = self.Activities;
             /// Raise event to notify other view that a dependecy property changed
             _eventAggregator.GetEvent<DependecyPropertyChangedEvent>().Publish(new DependecyPropertyChangedEventArgs(self.DependecyProp));
         }

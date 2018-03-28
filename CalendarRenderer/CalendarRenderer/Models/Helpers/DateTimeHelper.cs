@@ -43,7 +43,7 @@ namespace CalendarRenderer.Models.Helpers
 
             var browsingDate = firstOfMonth.AddDays(dayBeforeFirstOfWeek);
 
-            var Month = new Month(ApplicationService.Instance.EventAggregator, dependencyProperties, currentMonth, calendarDateTime.ToString(monthFormatShort), calendarDateTime.Year);
+            var Month = new Month(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate);
 
             /// Browse weeks
             for (int indexWeek = 0; indexWeek < weekInMonth; indexWeek++)
@@ -57,12 +57,12 @@ namespace CalendarRenderer.Models.Helpers
                     {
                         /// Comapre Date without hour 
                         bool isCurrentDay = browsingDate.Date == DateTime.Now.Date;
-                        week.Days.Add(new Day(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate.Day, browsingDate.ToString(dayFormat), browsingDate.Month, browsingDate.Year, valid: true, isCurrentDay: isCurrentDay));
+                        week.Days.Add(new Day(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate, valid: true, isCurrentDay: isCurrentDay));
                         browsingDate = browsingDate.AddDays(1);
                     }
                     else
                     {
-                        week.Days.Add(new Day(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate.Day, browsingDate.ToString(dayFormat), browsingDate.Month, browsingDate.Year, valid: false));
+                        week.Days.Add(new Day(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate, valid: false));
                         browsingDate = browsingDate.AddDays(1);
                     }
                 }
@@ -123,7 +123,7 @@ namespace CalendarRenderer.Models.Helpers
                 {
                     var isCurrentMonth = (browsingDate.Year == DateTime.Now.Year) && (browsingDate.Month == DateTime.Now.Month);
 
-                    var month = new Month(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate.Month, browsingDate.ToString(monthFormat), browsingDate.Year, isCurrentMonth);
+                    var month = new Month(ApplicationService.Instance.EventAggregator, dependencyProperties, browsingDate, isCurrentMonth);
                     year.Months.Add(month);
 
                     browsingDate = browsingDate.AddMonths(1);

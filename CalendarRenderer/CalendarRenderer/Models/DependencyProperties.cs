@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,5 +19,7 @@ namespace CalendarRenderer.Models
         public Color CellColor { get; set; }
         public Color CellBackgroundColor { get; set; }
         public Color TextColor { get; set; }
+
+        public ObservableCollection<DayActivity> Activities { get; set; }
     }
 }

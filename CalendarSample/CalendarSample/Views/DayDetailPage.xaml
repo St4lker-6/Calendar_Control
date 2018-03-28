@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CalendarSample.Views"
+             x:Class="CalendarSample.Views.DayDetailPage">
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <!--Activity Name-->
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="Activité :"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="End" />
+
+            <Entry Grid.Row="0" Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="StartAndExpand"
+                   WidthRequest="100"
+                   Text="{Binding ActivityText}"/>
+
+            
+            <!--Activity color-->
+            <Label Grid.Row="1" Grid.Column="0"
+                   Text="Couleur :"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="End" />
+            
+            <Grid Grid.Row="1" Grid.Column="1">
+                <BoxView Color="{Binding SelectedColor.Color}"/>
+
+                <Picker x:Name="picker" 
+                            Title="Select a color"
+                            ItemsSource="{Binding ColorList}"
+                            SelectedItem="{Binding SelectedColor}"
+                            TextColor="Black"
+                        BackgroundColor="Transparent"
+                            ItemDisplayBinding="{Binding Name}"/>
+
+            </Grid>
+            
+
+            <Button Grid.Row="3" Grid.Column="1"
+                    Text="Ajouter"
+                    Command="{Binding AddActivityCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

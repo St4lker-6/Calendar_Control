@@ -1,4 +1,5 @@
 ﻿using CalendarRenderer.Models.Events;
+using CalendarRenderer.Models.Helpers;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
@@ -30,9 +31,10 @@ namespace CalendarRenderer.Models
         public Color CurrentMonthColor { get; private set; }
         public Color TextColor { get; private set; }
         public Color CellColor { get; private set; }
+        public DateTime CurrentDateTime { get; private set; }
         #endregion
 
-        public Month(IEventAggregator eventAggregator, DependencyProperties dependencyProperties, int numberMonth, string nameMonth, int year, bool isCurrentMonth = false)
+        public Month(IEventAggregator eventAggregator, DependencyProperties dependencyProperties, DateTime dateTime, bool isCurrentMonth = false)
         {
             _eventAggregator = eventAggregator;
 
@@ -43,10 +45,11 @@ namespace CalendarRenderer.Models
                 this.CellColor = dependencyProperties.CellColor;
             }
 
-            this.NameMonth = nameMonth;
-            this.NumberMonth = numberMonth;
+            this.CurrentDateTime = dateTime;
+            this.NameMonth = dateTime.ToString(DateTimeHelper.monthFormat) ;
+            this.NumberMonth = dateTime.Month;
             this.IsCurrentMonth = isCurrentMonth;
-            this.Year = year;
+            this.Year = dateTime.Year;
 
             this.Weeks = new ObservableCollection<Week>();
             this.MonthClickCommand = new Command(this.MonthClicked);

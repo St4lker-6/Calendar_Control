@@ -3,17 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CalendarSample"
              xmlns:Ctrl="clr-namespace:CalendarRenderer;assembly=CalendarRenderer"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:behaviors="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
+             xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
+             x:Name="mainPageView" 
              x:Class="CalendarSample.MainPage">
 
     <StackLayout>
         
-        <!--Calendar custom control--> 
+        <!--Calendar custom control-->
         <Ctrl:CalendarControl CurrentDayColor="Red"
                               CurrentMonthColor = "Red"
                               CellColor="Black"
-                              CellBackgroundColor="Yellow"
-                              TextColor="Yellow"
-                              DayClickedEvent="DayClicked"/>
+                              CellBackgroundColor="White"
+                              TextColor="White"
+                              DayClickedEvent="DayClicked"
+                               />
+        <!--Activities="{Binding BindingContext.Activities, Mode=TwoWay, Source={x:Reference Name=mainPageView}}"-->
+                              <!-- Must precise the source to point the binding context of the page and not the binding context of the control -->
     </StackLayout>
 
 </ContentPage>
