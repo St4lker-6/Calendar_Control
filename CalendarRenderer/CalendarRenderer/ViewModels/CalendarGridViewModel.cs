@@ -38,19 +38,7 @@ namespace CalendarRenderer.ViewModels
             }
         }
 
-        private ObservableCollection<Week> _weeks;
-        public ObservableCollection<Week> Weeks
-        {
-            get
-            {
-                return _weeks;
-            }
-            set
-            {
-                _weeks = value;
-                this.NotifyPropertyChanged(nameof(Weeks));
-            }
-        }
+
 
         private Month _currentMonth;
         public Month CurrentMonth

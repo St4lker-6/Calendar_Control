@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:theme="clr-namespace:CalendarRenderer.ResourceDictionary"
+             x:Class="CalendarRenderer.Views.CalendarDayCellView"
+              >
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <theme:GlobalResourceDictionary/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Monday, tuesday, wednesday ...-->
+            <Label Grid.Row="0" 
+                   Margin="5,5,0,0"
+                   Style="{StaticResource gridLabelStyle}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" 
+                   Text="{Binding NameDay}"
+                   TextColor="{Binding TextColor}"
+                   BackgroundColor="{Binding CellColor}"/>
+            
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

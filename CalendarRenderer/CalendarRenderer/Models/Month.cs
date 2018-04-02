@@ -4,6 +4,7 @@ using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +13,40 @@ using Xamarin.Forms;
 
 namespace CalendarRenderer.Models
 {
-    public class Month
+    public class Month : INotifyPropertyChanged
     {
         #region Fields
         private readonly IEventAggregator _eventAggregator;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #endregion
+        private ObservableCollection<Week> _weeks;
+        public ObservableCollection<Week> Weeks
+        {
+            get
+            {
+                return _weeks;
+            }
+            set
+            {
+                _weeks = value;
+                if (this.PropertyChanged != null)
+                {
+                    this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(Weeks)));
+
+                }
+            }
+        }
 
         #region Properties
-        public ObservableCollection<Week> Weeks { get; set; }
+        //public ObservableCollection<Week> Weeks { get; set; }
+        public ObservableCollection<Day> DaysName { get; set; }
         public string NameMonth { get; private set; }
         public int NumberMonth { get; private set; }
         public int Year { get; private set; }
         public bool IsCurrentMonth { get; private set; }
-        public ICommand MonthClickCommand{ get; private set; }
+        public ICommand MonthClickCommand { get; private set; }
 
         /// Need to be in public to be able to bind on
         public Color CurrentMonthColor { get; private set; }
@@ -46,7 +67,7 @@ namespace CalendarRenderer.Models
             }
 
             this.CurrentDateTime = dateTime;
-            this.NameMonth = dateTime.ToString(DateTimeHelper.monthFormat) ;
+            this.NameMonth = dateTime.ToString(DateTimeHelper.monthFormat);
             this.NumberMonth = dateTime.Month;
             this.IsCurrentMonth = isCurrentMonth;
             this.Year = dateTime.Year;

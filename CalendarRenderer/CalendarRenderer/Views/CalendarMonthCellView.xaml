@@ -64,16 +64,6 @@
                    BackgroundColor="Transparent"
                    TextColor="{Binding TextColor}"/>
 
-
-            <!--Monday, tuesday, wednesday ...-->
-            <Label Grid.Row="0" 
-                   Margin="5,5,0,0"
-                   Style="{StaticResource gridLabelStyle}"
-                   HorizontalTextAlignment="Start"
-                   VerticalTextAlignment="Start" 
-                   Text="{Binding NameDay}"
-                   TextColor="{Binding TextColor}"/>
-
         </Grid>
     </ContentView.Content>
 </ContentView>

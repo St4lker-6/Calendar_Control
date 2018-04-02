@@ -17,10 +17,12 @@
     <ContentView.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <ListView Grid.Row="0"
+
+            <!--Grid of year--> 
+            <ListView Grid.Row="0" Grid.RowSpan="2"
                       HasUnevenRows="true"
                       ItemTemplate="{StaticResource Key=DataTemplateGridYear}" 
                       ItemsSource="{Binding Years}" IsVisible="False"
@@ -29,13 +31,57 @@
 
                 <!--Show the list view in function of the current grid mode*-->
                 <ListView.Triggers>
+                    
                     <DataTrigger TargetType="ListView" Binding="{Binding DisplayMode}" Value="1">
                         <Setter Property="IsVisible" Value="True"/>
                     </DataTrigger>
                 </ListView.Triggers>
             </ListView >
 
-            <ListView Grid.Row="0"
+            <!--Grid of day name-->
+            <Grid Grid.Row="0"
+                  IsVisible="False" 
+                  BackgroundColor="{Binding CellBackgroundColor}"
+                  RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <!--TODO: Voir comment gérer la taille de la ligne automatiquement-->
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <views:CalendarDayCellView Grid.Column="0"
+                                           BindingContext="{Binding CurrentMonth.Weeks[0].Days[0]}"/>
+                <views:CalendarDayCellView Grid.Column="1"
+                                           BindingContext="{Binding CurrentMonth.Weeks[0].Days[1]}"/>
+                <views:CalendarDayCellView Grid.Column="2"
+                                           BindingContext="{Binding CurrentMonth.Weeks[0].Days[2]}"/>
+                <views:CalendarDayCellView Grid.Column="3"
+                                           BindingContext="{Binding CurrentMonth.Weeks[0].Days[3]}"/>
+                <views:CalendarDayCellView Grid.Column="4"
+                                           BindingContext="{Binding CurrentMonth.Weeks[0].Days[4]}"/>
+                <views:CalendarDayCellView Grid.Column="5"
+                                           BindingContext="{Binding CurrentMonth.Weeks[0].Days[5]}"/>
+                <views:CalendarDayCellView Grid.Column="6"
+                                           BindingContext="{Binding CurrentMonth.Weeks[0].Days[6]}"/>
+                <Grid.Triggers>
+                    <DataTrigger TargetType="Grid" Binding="{Binding DisplayMode}" Value="0">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Grid.Triggers>
+            </Grid>
+           
+            
+            <!--Grid of day number-->
+            <ListView Grid.Row="1"
                       HasUnevenRows="true" 
                       ItemTemplate="{StaticResource Key=DataTemplateGridMonth}" 
                       ItemsSource="{Binding CurrentMonth.Weeks}" IsVisible="False"

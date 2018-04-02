@@ -25,7 +25,6 @@
         <ViewCell >
             <Grid RowSpacing="-1" ColumnSpacing="-1">
                 
-
                 <Grid.RowDefinitions>
                     <!--TODO: Voir comment gérer la taille de la ligne automatiquement-->
                     <RowDefinition Height="100"/>

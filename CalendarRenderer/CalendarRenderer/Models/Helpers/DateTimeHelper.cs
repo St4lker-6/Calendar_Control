@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 
 namespace CalendarRenderer.Models.Helpers
 {
@@ -69,6 +70,12 @@ namespace CalendarRenderer.Models.Helpers
 
                 Month.Weeks.Add(week);
             }
+
+            //Month.DaysName = new ObservableCollection<Day>();
+            //foreach (var item in Month.Weeks[0].Days)
+            //{
+            //    Month.DaysName.Add(item);
+            //}
 
             return Month;
         }
