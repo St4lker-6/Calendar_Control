@@ -6,11 +6,13 @@ using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XLabs.Forms.Behaviors;
 
 namespace CalendarRenderer.ViewModels
 {
@@ -118,11 +120,17 @@ namespace CalendarRenderer.ViewModels
 
         public MainPageViewModel()
         {
-
+            
         }
+
+        public RelayGesture DumpParam { get; set; }
 
         public MainPageViewModel(IEventAggregator eventAggregator)
         {
+            //g is a GestureResult and x is the GestureParameter
+            DumpParam = new RelayGesture((g, x) => Debug.WriteLine("DUMPING {0} from a {1}[{2}]", x, g.GestureType, g.Direction));
+
+
             this.PreviousButtonCommand = new Command(this.PreviousButtonClicked);
             this.CurrentButtonCommand = new Command(this.CurrentDateButtonClicked);
             this.NextButtonCommand = new Command(this.NextButtonClicked);

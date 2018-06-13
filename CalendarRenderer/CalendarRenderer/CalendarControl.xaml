@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:CalendarRenderer.Views"
              xmlns:theme="clr-namespace:CalendarRenderer.ResourceDictionary"
+             xmlns:lc="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:lb="clr-namespace:XLabs.Forms.Behaviors;assembly=XLabs.Forms" 
              x:Class="CalendarRenderer.CalendarControl">
 
     <ContentView.Resources>
@@ -14,65 +16,84 @@
     </ContentView.Resources>
 
     <ContentView.Content>
-        <Grid ColumnSpacing="-1" RowSpacing="-1" BackgroundColor="{Binding CellBackgroundColor}">
-            <!--Space between previous/next button and grid-->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <StackLayout>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="5*"/>
-            </Grid.RowDefinitions>
+                
+                <Grid ColumnSpacing="-1" RowSpacing="-1" BackgroundColor="Red" >
 
-            <!-- ****** First row ******-->
+                    <!--Space between previous/next button and grid-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <!--Previous button-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- ****** First row ******-->
+
+                    <!--Previous button-->
+                    <!--
             <Button Grid.Row="0" Grid.Column="0"
                 x:Name="PreviousButton"
                 Style="{StaticResource gridButtonStyle}"
                 BackgroundColor="{Binding CellColor}"
                 Text="&lt;"
                 TextColor="{Binding TextColor}"
-                Command="{Binding PreviousButtonCommand}"/>
+                Command="{Binding PreviousButtonCommand}"/>-->
 
-            <!--Current date button-->
-            <Grid Grid.Row="0" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                    <!--Current date button-->
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Grid.RowSpan="2"
+                    <lc:GesturesContentView Grid.Row="0" Grid.RowSpan="2" ExcludeChildren="True" >
+                        <lb:Gestures.Interests>
+                            <lb:GestureCollection>
+                                <lb:GestureInterest GestureType="Swipe" Direction="Right"/>
+                                <lb:GestureInterest GestureType="SingleTap" GestureCommand="{Binding NextButtonCommand}" />
+                            </lb:GestureCollection>
+                        </lb:Gestures.Interests>
+                        <!-- ************-->
+                    <Button Grid.Row="0" Grid.RowSpan="2"
                         x:Name="CurrentDateButton"
                         Style="{StaticResource gridButtonStyle}"
                         Command="{Binding CurrentButtonCommand}"
                         BackgroundColor="{Binding CellColor}"/>
 
-                <Label Grid.Row="0" 
+                        <Label Grid.Row="0" 
                        HorizontalOptions="Center" VerticalOptions="Center"
                        Style="{StaticResource gridLabelStyle}"
                        Text="{Binding DateLabel}"
                        TextColor="{Binding TextColor}"/>
+                    </lc:GesturesContentView>
 
-            </Grid>
+                </Grid>
 
-            <!--Next button-->
-            <Button Grid.Row="0" Grid.Column="2"
+                    <!--Next button-->
+                    <Button Grid.Row="0" Grid.Column="2"
                 Style="{StaticResource gridButtonStyle}"
                 x:Name="NextButton"
                 Command="{Binding NextButtonCommand}"
                 BackgroundColor="{Binding CellColor}"
                 Text="&gt;"
                 TextColor="{Binding TextColor}"/>
-            <!-- ************-->
+                    <!-- ************-->
 
-            <!-- ****** Second Row ******-->
-            <views:CalendarGridView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
-                                BindingContext="{Binding CalendarGridViewModel}"/>
-            <!-- ************-->
+                    <!-- ****** Second Row ******-->
+                    <views:CalendarGridView  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
+                                BindingContext="{Binding CalendarGridViewModel}">
+                    </views:CalendarGridView>
+                    <!-- ************-->
+            </Grid>
 
-        </Grid>
+
+
+        </StackLayout>
+
     </ContentView.Content>
 </ContentView>

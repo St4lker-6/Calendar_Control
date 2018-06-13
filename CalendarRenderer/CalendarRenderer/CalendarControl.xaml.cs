@@ -12,6 +12,8 @@ using Xamarin.Forms.Xaml;
 using Prism.Events;
 using CalendarRenderer.Models.Events;
 using System.Collections.ObjectModel;
+using XLabs.Forms.Behaviors;
+using XLabs.Forms.Controls;
 
 namespace CalendarRenderer
 {
@@ -196,6 +198,28 @@ namespace CalendarRenderer
             self.DependecyProp.Activities = self.Activities;
             /// Raise event to notify other view that a dependecy property changed
             _eventAggregator.GetEvent<DependecyPropertyChangedEvent>().Publish(new DependecyPropertyChangedEventArgs(self.DependecyProp));
+        }
+
+        private void GesturesContentView_GestureRecognized(object sender, GestureResult e)
+        {
+            switch (e.GestureType)
+            {
+                case GestureType.LongPress:
+                    //Add code here
+                    break;
+
+                case GestureType.SingleTap:
+                    // Add code here                    
+                    break;
+                case GestureType.DoubleTap:
+                    // Add code here
+                    break;
+                case GestureType.Swipe:
+                    // Add code here
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
