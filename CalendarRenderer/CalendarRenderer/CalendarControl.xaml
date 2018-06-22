@@ -18,8 +18,7 @@
     <ContentView.Content>
         <StackLayout>
 
-                
-                <Grid ColumnSpacing="-1" RowSpacing="-1" BackgroundColor="Red" >
+            <Grid ColumnSpacing="-1" RowSpacing="-1" BackgroundColor="{Binding CellBackgroundColor}" >
 
                     <!--Space between previous/next button and grid-->
                     <Grid.ColumnDefinitions>
@@ -36,14 +35,14 @@
                     <!-- ****** First row ******-->
 
                     <!--Previous button-->
-                    <!--
+                    
             <Button Grid.Row="0" Grid.Column="0"
                 x:Name="PreviousButton"
                 Style="{StaticResource gridButtonStyle}"
                 BackgroundColor="{Binding CellColor}"
                 Text="&lt;"
                 TextColor="{Binding TextColor}"
-                Command="{Binding PreviousButtonCommand}"/>-->
+                Command="{Binding PreviousButtonCommand}"/>
 
                     <!--Current date button-->
                     <Grid Grid.Row="0" Grid.Column="1">
@@ -51,13 +50,13 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                    <lc:GesturesContentView Grid.Row="0" Grid.RowSpan="2" ExcludeChildren="True" >
+                    <!--<lc:GesturesContentView Grid.Row="0" Grid.RowSpan="2" ExcludeChildren="True" >
                         <lb:Gestures.Interests>
                             <lb:GestureCollection>
                                 <lb:GestureInterest GestureType="Swipe" Direction="Right"/>
                                 <lb:GestureInterest GestureType="SingleTap" GestureCommand="{Binding NextButtonCommand}" />
                             </lb:GestureCollection>
-                        </lb:Gestures.Interests>
+                        </lb:Gestures.Interests>-->
                         <!-- ************-->
                     <Button Grid.Row="0" Grid.RowSpan="2"
                         x:Name="CurrentDateButton"
@@ -66,22 +65,22 @@
                         BackgroundColor="{Binding CellColor}"/>
 
                         <Label Grid.Row="0" 
-                       HorizontalOptions="Center" VerticalOptions="Center"
-                       Style="{StaticResource gridLabelStyle}"
-                       Text="{Binding DateLabel}"
-                       TextColor="{Binding TextColor}"/>
-                    </lc:GesturesContentView>
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               Style="{StaticResource gridLabelStyle}"
+                               Text="{Binding DateLabel}"
+                               TextColor="{Binding TextColor}"/>
+                    <!--</lc:GesturesContentView>-->
 
                 </Grid>
 
                     <!--Next button-->
                     <Button Grid.Row="0" Grid.Column="2"
-                Style="{StaticResource gridButtonStyle}"
-                x:Name="NextButton"
-                Command="{Binding NextButtonCommand}"
-                BackgroundColor="{Binding CellColor}"
-                Text="&gt;"
-                TextColor="{Binding TextColor}"/>
+                            Style="{StaticResource gridButtonStyle}"
+                            x:Name="NextButton"
+                            Command="{Binding NextButtonCommand}"
+                            BackgroundColor="{Binding CellColor}"
+                            Text="&gt;"
+                            TextColor="{Binding TextColor}"/>
                     <!-- ************-->
 
                     <!-- ****** Second Row ******-->
