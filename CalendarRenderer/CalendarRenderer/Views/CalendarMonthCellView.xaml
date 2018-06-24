@@ -29,7 +29,6 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Grid.Style>
@@ -43,7 +42,7 @@
                 </Style>
             </Grid.Style>
 
-            <Button Grid.Row="0" Grid.RowSpan="2" 
+            <Button Grid.Row="0"
                     Style="{StaticResource gridButtonStyle}"
                     Command="{Binding DayClickCommand}"
                     BackgroundColor="{Binding CellColor}">
@@ -56,10 +55,11 @@
 
             <!--1, 2, 3, 4-->
             <Label Grid.Row="0" 
-                   Margin="0,5,5,0"
                    Style="{StaticResource gridLabelStyle}"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Start" 
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center" 
                    Text="{Binding NumberDay}"
                    BackgroundColor="Transparent"
                    TextColor="{Binding TextColor}"/>

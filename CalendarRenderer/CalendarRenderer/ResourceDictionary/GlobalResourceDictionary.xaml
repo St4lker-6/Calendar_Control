@@ -7,7 +7,7 @@
     <!--**** Grid month button template ****-->
     <Style x:Key="gridButtonStyle" TargetType="Button">
         <!--Use to delete space between cell grid and button inside-->
-        <Setter Property="Margin" Value="-2,-2,0,0" />
+        <Setter Property="Margin" Value="-5,-8,-5,-8" />
         <Setter Property="BackgroundColor" Value="Black" />
         <Setter Property="TextColor" Value="White" />
     </Style>
@@ -23,7 +23,7 @@
     <!--**** Grid month template ****-->
     <DataTemplate x:Key="DataTemplateGridMonth">
         <ViewCell >
-            <Grid RowSpacing="-1" ColumnSpacing="-1">
+            <Grid RowSpacing="0" ColumnSpacing="0">
                 
                 <Grid.RowDefinitions>
                     <!--TODO: Voir comment gérer la taille de la ligne automatiquement-->
@@ -68,7 +68,7 @@
     <!--**** Grid year template ****-->
     <DataTemplate x:Key="DataTemplateGridYear">
         <ViewCell>
-            <Grid RowSpacing="-1" ColumnSpacing="-1">
+            <Grid RowSpacing="0" ColumnSpacing="0">
                 <!--Space between date cell button-->
                 <Grid.RowDefinitions>
                     <!--TODO: Voir comment gérer la taille de la ligne automatiquement-->

@@ -21,8 +21,7 @@
             </Grid.RowDefinitions>
 
             <!--Monday, tuesday, wednesday ...-->
-            <Label Grid.Row="0" 
-                   Margin="5,5,0,0"
+            <Label Grid.Row="0"
                    Style="{StaticResource gridLabelStyle}"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center" 

@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid ColumnSpacing="0" RowSpacing="1"> <!--Space between previous/next button and grid-->
+    <Grid ColumnSpacing="0" RowSpacing="0"> <!--Space between previous/next button and grid-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
@@ -23,7 +23,6 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
         <!-- ****** First row ******-->
@@ -31,6 +30,8 @@
         <!--Previous button-->
         <Button Grid.Row="0" Grid.Column="0"
                 x:Name="PreviousButton"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
                 Style="{StaticResource gridButtonStyle}"
                 Command="{Binding PreviousButtonCommand}"/>
 
@@ -40,15 +41,18 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" Grid.RowSpan="2"
-                x:Name="CurrentDateButton"
-                Style="{StaticResource gridButtonStyle}"
-                Command="{Binding CurrentButtonCommand}"/>
+            <Button Grid.Row="0" 
+                    x:Name="CurrentDateButton"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Style="{StaticResource gridButtonStyle}"
+                    Command="{Binding CurrentButtonCommand}"/>
 
             <Label Grid.Row="0" 
                    Style="{StaticResource gridLabelStyle}"
                    Text="{Binding DateLabel}"
-                   HorizontalOptions="Center" VerticalOptions="Center"/>
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"/>
 
         </Grid>
 

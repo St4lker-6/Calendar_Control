@@ -15,7 +15,7 @@
     </ContentView.Resources>
 
     <ContentView.Content>
-        <Grid>
+        <Grid RowSpacing="-1" ColumnSpacing="-1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -31,7 +31,6 @@
 
                 <!--Show the list view in function of the current grid mode*-->
                 <ListView.Triggers>
-                    
                     <DataTrigger TargetType="ListView" Binding="{Binding DisplayMode}" Value="1">
                         <Setter Property="IsVisible" Value="True"/>
                     </DataTrigger>
@@ -42,7 +41,7 @@
             <Grid Grid.Row="0"
                   IsVisible="False" 
                   BackgroundColor="{Binding CellBackgroundColor}"
-                  RowSpacing="0" ColumnSpacing="0">
+                  RowSpacing="-1" ColumnSpacing="-1">
                 <Grid.RowDefinitions>
                     <!--TODO: Voir comment gérer la taille de la ligne automatiquement-->
                     <RowDefinition Height="30"/>
