@@ -26,6 +26,14 @@ namespace CalendarRenderer.Models
         public int Year { get; private set; }
         public bool IsCurrentDay { get; private set; }
 
+        public string DisplayedName
+        {
+            get
+            {
+                return NameDay.ToUpper()[0].ToString();
+            }
+        }
+
         /// <summary>
         /// Invalid if the day is a day of an another month
         /// </summary>

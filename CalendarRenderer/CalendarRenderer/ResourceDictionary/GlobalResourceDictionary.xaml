@@ -7,7 +7,7 @@
     <!--**** Grid month button template ****-->
     <Style x:Key="gridButtonStyle" TargetType="Button">
         <!--Use to delete space between cell grid and button inside-->
-        <Setter Property="Margin" Value="-5,-8,-5,-8" />
+        <Setter Property="Margin" Value="-5,-9,-5,-9" />
         <Setter Property="BackgroundColor" Value="Black" />
         <Setter Property="TextColor" Value="White" />
     </Style>

@@ -25,7 +25,7 @@
                    Style="{StaticResource gridLabelStyle}"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center" 
-                   Text="{Binding NameDay}"
+                   Text="{Binding DisplayedName}"
                    TextColor="{Binding TextColor}"
                    BackgroundColor="{Binding CellColor}"/>
             
